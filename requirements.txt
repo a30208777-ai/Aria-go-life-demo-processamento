@@ -1,0 +1,6 @@
+flask
+ddgs
+deep_translator
+pillow
+# opcional, só para vídeos:
+# opencv-python

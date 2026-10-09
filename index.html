@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Baixar a Aria — IA autoevolutiva</title>
+<meta name="description" content="Baixe a Aria, uma IA em Python que roda no seu computador, estuda na internet e evolui por 6 pastas de teste.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#edf1f3; --panel:#ffffff; --ink:#12222b; --muted:#53656f; --line:#cbd6db;
+  --accent:#0e7c86; --accent-dark:#0a5d65; --code:#12222b; --code-ink:#d9eef0;
+  --f0:#8a8f94; --f1:#c4553a; --f2:#d98e2b; --f3:#a9a82f; --f4:#4e9f5a; --f5:#1f8a5b;
+}
+*{box-sizing:border-box}
+html{scroll-padding-top:16px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 "Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  padding:env(safe-area-inset-top) 0 env(safe-area-inset-bottom)}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+h1,h2{font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;line-height:1.08;margin:0}
+h1{font-weight:800;font-size:clamp(2.4rem,9vw,4.2rem);letter-spacing:-.02em}
+h2{font-weight:800;font-size:clamp(1.5rem,5vw,2rem);letter-spacing:-.01em;margin-bottom:12px}
+p{margin:0 0 14px;max-width:62ch}
+a{color:var(--accent-dark)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+header{padding:56px 0 36px}
+.lead{font-size:1.15rem;color:var(--muted);margin:18px 0 28px}
+.btn{display:inline-block;background:var(--accent);color:#fff;text-decoration:none;font-weight:600;font-size:1.1rem;
+  padding:16px 26px;border-radius:10px;border:0;cursor:pointer}
+.btn:hover{background:var(--accent-dark)}
+.btn.sec{background:transparent;color:var(--accent-dark);border:2px solid var(--accent);margin-left:8px}
+.btn.sec:hover{background:rgba(14,124,134,.08)}
+.facts{margin-top:18px;color:var(--muted);font-size:.95rem}
+.facts b{color:var(--ink);font-weight:600}
+
+section{padding:34px 0;border-top:1px solid var(--line)}
+ol.passos{list-style:none;counter-reset:p;margin:0;padding:0}
+ol.passos li{counter-increment:p;position:relative;padding:0 0 22px 48px}
+ol.passos li::before{content:counter(p);position:absolute;left:0;top:0;width:32px;height:32px;border-radius:50%;
+  background:var(--ink);color:#fff;display:grid;place-items:center;font:700 .95rem "Public Sans",sans-serif}
+.cmd{display:flex;gap:8px;align-items:stretch;margin:8px 0 0;max-width:100%}
+.cmd code{flex:1;min-width:0;overflow-x:auto;white-space:pre;background:var(--code);color:var(--code-ink);
+  padding:12px 14px;border-radius:8px;font:500 .92rem/1.4 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.cmd button{flex:none;background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:0 14px;font:600 .9rem "Public Sans",sans-serif;color:var(--ink);cursor:pointer}
+.cmd button:hover{border-color:var(--accent)}
+
+.escada{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:10px}
+.escada li{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:center;background:var(--panel);
+  border:1px solid var(--line);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden}
+.escada li::before{content:"";position:absolute;left:0;top:0;bottom:0;width:var(--w);background:var(--c);opacity:.14}
+.escada .n{position:relative;font:800 1.5rem "Bricolage Grotesque",sans-serif;color:var(--c);min-width:1.4ch}
+.escada .t{position:relative}
+.escada strong{font-weight:600}
+.escada small{display:block;color:var(--muted);font-size:.9rem}
+
+.dois{display:grid;gap:14px;margin-top:6px}
+@media(min-width:640px){.dois{grid-template-columns:1fr 1fr}}
+.dois>div{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.dois h3{margin:0 0 8px;font:700 1.05rem "Public Sans",sans-serif}
+.dois ul{margin:0;padding-left:1.1em}
+.dois li{margin:4px 0}
+
+footer{padding:30px 0 56px;border-top:1px solid var(--line);color:var(--muted);font-size:.92rem}
+footer code{display:block;margin:6px 0 12px;word-break:break-all;color:var(--ink);font:500 .85rem ui-monospace,Menlo,Consolas,monospace}
+.sr{position:absolute;left:-9999px}
+@media (prefers-reduced-motion:no-preference){header .btn{transition:background .15s}}
+</style>
+</head>
+<body>
+<header class="wrap">
+  <h1>Baixe a Aria</h1>
+  <p class="lead">Uma IA em Python que conversa em português e inglês, calcula, analisa seus dados e estuda temas na internet. Ela roda no seu computador e melhora sozinha, passando por testes de segurança antes de cada mudança.</p>
+  <a class="btn" id="baixar" href="aria.py" download="aria.py">Baixar aria.py</a>
+  <a class="btn sec" id="repo" href="#" hidden>Ver no GitHub</a>
+  <p class="facts">Versão <b id="versao">—</b> · <b id="tamanho">—</b> · precisa do Python 3.10 ou mais novo</p>
+</header>
+
+<main class="wrap">
+  <section aria-labelledby="como">
+    <h2 id="como">Como rodar</h2>
+    <ol class="passos">
+      <li>Instale o <a href="https://www.python.org/downloads/">Python</a> e baixe também a lista de pacotes.
+        <p style="margin-top:8px"><a href="requirements.txt" download>requirements.txt</a></p></li>
+      <li>Na pasta onde salvou os arquivos, instale os pacotes:
+        <div class="cmd"><code>pip install -r requirements.txt</code><button type="button" data-copiar>Copiar</button></div></li>
+      <li>Inicie a Aria e abra <a href="http://127.0.0.1:5000">127.0.0.1:5000</a> no navegador. Crie sua conta e converse.
+        <div class="cmd"><code>python aria.py</code><button type="button" data-copiar>Copiar</button></div></li>
+    </ol>
+    <p>Não precisa configurar mais nada. Digite <b>ajuda</b> no chat para ver o que ela entende.</p>
+  </section>
+
+  <section aria-labelledby="pastas">
+    <h2 id="pastas">Como ela evolui</h2>
+    <p>Cada pessoa tem a sua própria Aria. Ela cria versões novas de si mesma e cada uma faz uma prova de segurança e de qualidade. A nota decide em qual pasta a versão fica, e só uma versão melhor assume o lugar da atual.</p>
+    <ol class="escada">
+      <li style="--c:var(--f0);--w:12%"><span class="n">0</span><span class="t"><strong>Teste</strong><small>Versões novas fazendo a prova</small></span></li>
+      <li style="--c:var(--f1);--w:28%"><span class="n">1</span><span class="t"><strong>Ruins</strong><small>Muita rebelião ou respostas ruins</small></span></li>
+      <li style="--c:var(--f2);--w:44%"><span class="n">2</span><span class="t"><strong>Nem</strong><small>Menos rebelião e respostas melhores</small></span></li>
+      <li style="--c:var(--f3);--w:60%"><span class="n">3</span><span class="t"><strong>Boas</strong><small>Ainda menos rebelião</small></span></li>
+      <li style="--c:var(--f4);--w:80%"><span class="n">4</span><span class="t"><strong>Excelentes</strong><small>Quase nenhuma rebelião</small></span></li>
+      <li style="--c:var(--f5);--w:100%"><span class="n">5</span><span class="t"><strong>Perfeitas</strong><small>Nenhuma rebelião nas provas e a melhor resposta</small></span></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="limites">
+    <h2 id="limites">O que ela faz e o que não faz</h2>
+    <div class="dois">
+      <div>
+        <h3>Faz</h3>
+        <ul>
+          <li>Responde, calcula e analisa números e arquivos CSV</li>
+          <li>Estuda um tema na internet com <code>aprenda (tema)</code></li>
+          <li>Guarda o que você ensina na sua pasta <code>aria_data</code></li>
+          <li>Recusa ordens perigosas</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Não faz</h3>
+        <ul>
+          <li>Não executa comandos no seu computador</li>
+          <li>Não apaga seus arquivos</li>
+          <li>Não muda o próprio código: só os exemplos que usa para entender você</li>
+          <li>Não envia nada para fora, a menos que você ligue o Supabase</li>
+        </ul>
+      </div>
+    </div>
+    <p style="margin-top:14px">“Nenhuma rebelião” vale para as provas que ela faz, não é uma garantia absoluta.</p>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Confira se o arquivo baixado é o mesmo que está aqui. Código esperado (SHA-256):</p>
+  <code id="hash">carregando…</code>
+  <p>No Windows: <code style="display:inline">certutil -hashfile aria.py SHA256</code>. No Mac e Linux: <code style="display:inline">sha256sum aria.py</code>.</p>
+  <p><a id="rel" href="#" hidden>Versões anteriores</a></p>
+</footer>
+
+<script>
+(function(){
+  // links do GitHub, quando a página está no GitHub Pages
+  var h=location.hostname, seg=location.pathname.split('/')[1];
+  if(h.endsWith('github.io')&&seg){
+    var base='https://github.com/'+h.split('.')[0]+'/'+seg;
+    var r=document.getElementById('repo'); r.href=base; r.hidden=false;
+    var v=document.getElementById('rel'); v.href=base+'/releases'; v.hidden=false;
+  }
+  // versão e tamanho lidos do próprio arquivo, hash do arquivo .sha256
+  fetch('aria.py').then(function(x){return x.text()}).then(function(t){
+    var m=t.match(/SERVER_VERSION\s*=\s*"([^"]+)"/);
+    if(m) document.getElementById('versao').textContent=m[1];
+    document.getElementById('tamanho').textContent=Math.round(new Blob([t]).size/1024)+' KB';
+  }).catch(function(){});
+  fetch('aria.py.sha256').then(function(x){return x.text()}).then(function(t){
+    document.getElementById('hash').textContent=t.trim().split(/\s+/)[0];
+  }).catch(function(){document.getElementById('hash').textContent='arquivo aria.py.sha256 indisponível'});
+  // botões de copiar
+  document.querySelectorAll('[data-copiar]').forEach(function(b){
+    b.addEventListener('click',function(){
+      var txt=b.previousElementSibling.textContent;
+      (navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(function(){
+        b.textContent='Copiado'; setTimeout(function(){b.textContent='Copiar'},1500);
+      }).catch(function(){b.textContent='Selecione e copie';});
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -19,6 +19,7 @@ Você precisa de **Python 3.10 ou mais novo**.
 pip install flask ddgs deep_translator pillow
 python aria.py
 ```
+## DICA: SE NÃO TIVER COM A KEY SEGREDA MUDE O FORMADO DO ARQUIVO aria.txt para .env
 
 Depois abra **http://127.0.0.1:5000**, crie sua conta e converse.
 

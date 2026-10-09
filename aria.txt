@@ -1,0 +1,1 @@
+SUPABASE_SERVICE_KEY="sb_secret_EHt5lxMurtP6I0aPt4oZlA_LgQQq27N"
